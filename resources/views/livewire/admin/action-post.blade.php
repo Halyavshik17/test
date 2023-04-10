@@ -135,7 +135,7 @@
             'class' => '...',
             'style' => '...',
             'readOnly' => false,
-            'placeholder' => 'ПроверОЧКА',
+            'placeholder' => 'Заголовок',
         ])
     </form>
 
