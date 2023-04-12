@@ -250,15 +250,14 @@ window.editorInstance = function (dataProperty, editorId, readOnly, placeholder,
       this.instance = new (_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default())({
         holder: editorId,
         readOnly: readOnly,
-        // defaultBlock: 'Header',
-
         placeholder: placeholder,
         logLevel: logLevel,
         tools: {
           header: {
             "class": (_editorjs_header__WEBPACK_IMPORTED_MODULE_3___default()),
             config: {
-              placeholder: 'Header'
+              placeholder: 'Header',
+              defaultLevel: 2
             }
           },
           image: {
@@ -308,17 +307,19 @@ window.editorInstance = function (dataProperty, editorId, readOnly, placeholder,
           _this.instance.save().then(function (outputData) {
             _this.$wire.set(dataProperty, outputData);
             _this.$wire.call('save');
-            var blocks = _this.instance.blocks;
-            blocks.forEach(function (block) {
-              if (block.type === 'header' && block.data.level !== 1) {
-                // isValid = false;
-                console.log('Header NULL');
-              }
-            });
           })["catch"](function (error) {
             console.log('Saving failed: ', error);
           });
         }
+      });
+    },
+    saveEditor: function saveEditor() {
+      var _this2 = this;
+      this.instance.save().then(function (outputData) {
+        console.log('Article data: ', outputData);
+        _this2.$wire.call('save');
+      })["catch"](function (error) {
+        console.log('Saving failed: ', error);
       });
     }
   };

@@ -11,17 +11,18 @@ class ActionPost extends Component
     // Прослушиваем событие "editorJs@"
     protected $listeners = ['editorjs-save:myEditor' => 'saveEditorState'];
 
-    public $data;
-
     public $posts;
     public $title;
+
+    public $content;
 
     public $selected_id;
 
     public $validatedData;
 
     protected $rules = [
-        'title' => 'required|string'
+        'title' => 'required|string',
+        'content' => 'required'
     ];
 
     protected $messages = [
@@ -33,49 +34,31 @@ class ActionPost extends Component
 
     public function showModalCreate()
     {
-        // $this->showingModalCreate = true;
+        $this->showingModalCreate = true;
 
         return view('livewire.admin.action-post-create');
     }
 
     public function saveEditorState($editorJsonData)
     {
-        // $this->model->data = $editorJsonData;
-        $this->data = $editorJsonData;
-        // dd($this->data);
+        $this->content = json_encode($editorJsonData);
     }
 
     public function save()
     {
-        // $this->data = $editorJsonData;
-        $outData = json_encode($this->data);
+        $validatedData = $this->validate();
 
-        // $outData = $this->data;
-        dd($outData);
-        if(isset($outData))
-        {
-            Post::firstOrCreate([
-                'title' => 'test',
-                'content' => $outData
-            ]);
+        if(isset($validatedData)) {
+            Post::firstOrCreate($validatedData);
         }
 
-
-        // $validatedData = $this->validate();
-        // Post::firstOrCreate([
-        //     'title' => 'test',
-        //     'content' => $this->data
-        // ]);
-
-        // session()->flash('message', 'Уиии мы добавили категорию!');
+        $this->resetModal();
     }
 
     public function create()
     {
         $validatedData = $this->validate();
         Post::firstOrCreate($validatedData);
-
-        session()->flash('message', 'Уиии мы добавили категорию!');
 
         $this->resetModal();
     }
@@ -115,7 +98,7 @@ class ActionPost extends Component
     public function render()
     {
         $this->posts = Post::all();
-        // dd($this->posts);
+
         return view('livewire.admin.action-post');
     }
 }

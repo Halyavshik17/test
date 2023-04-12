@@ -9,7 +9,8 @@ $maxWidth = [
     'lg' => 'sm:max-w-lg',
     'xl' => 'sm:max-w-xl',
     '2xl' => 'sm:max-w-2xl',
-][$maxWidth ?? '2xl'];
+    '4xl' => 'sm:max-w-4xl',
+][$maxWidth ?? '4xl'];
 @endphp
 
 <div
@@ -32,7 +33,7 @@ $maxWidth = [
     }"
     x-init="$watch('show', value => {
         if (value) {
-            document.body.classList.add('overflow-y-hidden');
+            {{-- document.body.classList.add('overflow-y-hidden'); --}}
             {{ $attributes->has('focusable') ? 'setTimeout(() => firstFocusable().focus(), 100)' : '' }}
         } else {
             document.body.classList.remove('overflow-y-hidden');

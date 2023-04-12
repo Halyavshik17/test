@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@tailwind variants;
 
 @layer base {
     h1 {
@@ -23,4 +23,9 @@
       @apply text-base;
     }
     /* ... */
+
+    .editor_header {
+      @apply w-full resize-none text-4xl text-gray-700 placeholder-gray-600 h-16 px-3 py-2 focus:outline-none
+            border-0;
+    }
   }

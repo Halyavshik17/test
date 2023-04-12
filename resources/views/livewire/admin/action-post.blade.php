@@ -5,21 +5,55 @@
     </x-jet-button>
 
     {{-- Show modal create  --}}
-    <x-jet-dialog-modal wire:model="showingModalCreate" maxWidth="md">
+    <x-jet-dialog-modal wire:model="showingModalCreate" maxWidth="4xl">
         <x-slot name="title">
-            Добавление поста
+            {{-- Добавление поста --}}
         </x-slot>
 
         <x-slot name="content">
+            <div class="mt-2">
+                <label for="category" class="block text-sm font-medium text-gray-700">Категория</label>
+                <select id="category" name="category"
+                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <option>Выберите категорию</option>
+                    <option>Категория 1</option>
+                    <option>Категория 2</option>
+                    <option>Категория 3</option>
+                </select>
+            </div>
+
+            <div class="mt-2">
+                <label for="tags" class="block text-sm font-medium text-gray-700">Теги</label>
+                <input type="text" name="tags" id="tags"
+                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    placeholder="Введите теги через запятую">
+            </div>
+
             <div class="col-span-6 sm:col-span-4 mt-4">
-                <x-jet-label for="title" value="{{ __('Название поста') }}" />
-                <x-jet-input id="title" type="text" class="mt-1 block w-full" wire:model.defer="title"
-                    autocomplete="title" />
-                <x-jet-input-error for="title" class="mt-2" />
+                {{-- <x-jet-label for="title" value="{{ __('Название поста') }}" /> --}}
+                {{-- <x-jet-input id="title" type="text" class="mt-1 block w-full" wire:model.defer="title" --}}
+                    {{-- autocomplete="title" /> --}}
+                {{-- <x-jet-input-error for="title" class="mt-2" /> --}}
+
+                <textarea id="title" wire:model.defer="title" rows="1" placeholder="Заголовок" default="default" maxlength="120"
+                class="editor_header"
+                style="height: 47px; overflow-y: hidden;" data-processed="true" autocomplete="title"></textarea>
+
+                @livewire('editorjs', [
+                    'editorId' => 'myEditor',
+                    'value' => $content,
+                    'uploadDisk' => 'public',
+                    'downloadDisk' => 'public',
+                    'class' => '...',
+                    'style' => '...',
+                    'readOnly' => false,
+                    'placeholder' => 'Нажмите TAB для выбора инструмента',
+                ])
             </div>
         </x-slot>
         <x-slot name="footer">
-            <x-jet-button wire:click="create" wire:loading.attr="disabled">
+            <x-jet-button wire:click="save" wire:target="save" wire:loading.attr="disabled">
+            {{-- <x-jet-button wire:click="create" wire:loading.attr="disabled"> --}}
                 {{ __('Сохранить') }}
             </x-jet-button>
 
@@ -125,18 +159,4 @@
             </div>
         </div>
     </div>
-
-    <form wire:submit.prevent="save">
-        @livewire('editorjs', [
-            'editorId' => 'myEditor',
-            // 'value' => $value,
-            'uploadDisk' => 'public',
-            'downloadDisk' => 'public',
-            'class' => '...',
-            'style' => '...',
-            'readOnly' => false,
-            'placeholder' => 'Заголовок',
-        ])
-    </form>
-
 </div>

@@ -39,7 +39,7 @@
             </main>
         </div>
 
-        @stack('modals')
+        {{-- @stack('modals') --}}
 
         @livewireScripts
         @livewireEditorjsScripts
