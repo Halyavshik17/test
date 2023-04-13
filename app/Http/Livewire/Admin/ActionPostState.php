@@ -9,12 +9,23 @@ use Durlecode\EJSParser\Parser;
 class ActionPostState extends Component
 {
     public $posts;
+
+    public $html;
+
+    // public $content;
+
     public function render()
     {
-        $posts = Post::all();
+        $this->posts = Post::all();
 
-        // dd($posts);
-        // $html = Parser::parse($data)->toHtml();
+        foreach($this->posts as $post) {
+            // dd($post->content);
+            // $this->html = Parser::parse($post->content)->toHtml();
+            $this->html = Parser::parse($post->content)->getBlocks();
+
+            dd($this->html);
+        }
+        // $html = Parser::parse($this->posts->content)->toHtml();
 
         return view('livewire.admin.action-post-state');
     }
