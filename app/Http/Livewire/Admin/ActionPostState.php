@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Post;
 use Livewire\Component;
-use Durlecode\EJSParser\Parser;
+use App\Http\EditorParser;
 
 class ActionPostState extends Component
 {
@@ -21,9 +21,11 @@ class ActionPostState extends Component
         foreach($this->posts as $post) {
             // dd($post->content);
             // $this->html = Parser::parse($post->content)->toHtml();
-            $this->html = Parser::parse($post->content)->getBlocks();
+            $this->html = EditorParser::parse($post->content)->getBlocks();
 
-            dd($this->html);
+            // dd($this->html->type);
+
+            // dd($this->html);
         }
         // $html = Parser::parse($this->posts->content)->toHtml();
 
