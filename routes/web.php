@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('index');
 // })->name('dashboard');
 
-Route::get('/', 'PostController@index')->name('dashboard');
+Route::get('/', 'PostController@index')->name('index');
+Route::get('/post/{post}', 'PostController@show')->name('show-post');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', config('jetstream.auth_session'), 'admin', 'verified']], function() {
     Route::get('/', function () { return view('admin.index'); })->name('dashboard');
