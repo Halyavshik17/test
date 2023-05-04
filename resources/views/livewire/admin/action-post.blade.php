@@ -44,8 +44,8 @@
                     class="editor_header"
                     style="height: 47px; overflow-y: hidden;" data-processed="true" autocomplete="title"></textarea>
 
-                    @livewire('editorjs', [
-                        'editorId' => 'myEditor',
+                    @livewire('custom-editor', [
+                        'editorId' => 'editor_create',
                         'value' => $content,
                         'uploadDisk' => 'public',
                         'downloadDisk' => 'public',
@@ -69,7 +69,7 @@
             </x-slot>
         </x-jet-dialog-modal>
         {{-- Show modal edit  --}}
-        <x-jet-dialog-modal wire:model="showingModalEdit" maxWidth="md">
+        <x-jet-dialog-modal wire:model="showingModalEdit" maxWidth="4xl">
             <x-slot name="title">
                 Редактирование поста
             </x-slot>
@@ -107,9 +107,9 @@
                     class="editor_header"
                     style="height: 47px; overflow-y: hidden;" data-processed="true" autocomplete="title"></textarea>
 
-                    @livewire('editorjs', [
-                        'editorId' => 'myEditor',
-                        'value' => wire:model.defer="title",
+                    @livewire('custom-editor', [
+                        'editorId' => 'editor_edit',
+                        'value' => $content,
                         'uploadDisk' => 'public',
                         'downloadDisk' => 'public',
                         'class' => '...',

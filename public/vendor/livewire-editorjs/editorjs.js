@@ -57,9 +57,9 @@ var i=function(){function e(t){var n=t.data,r=t.config,o=t.api,i=t.readOnly;!fun
 
 /*!
  * Image tool
- * 
+ *
  * @version 2.8.1
- * 
+ *
  * @package https://github.com/editor-js/image
  * @licence MIT
  * @author CodeX <https://codex.so>
@@ -143,7 +143,7 @@ var i=function(){function e(t){var n=t.data,r=t.config,o=t.api,i=t.readOnly;!fun
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -157,14 +157,14 @@ var i=function(){function e(t){var n=t.data,r=t.config,o=t.api,i=t.readOnly;!fun
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -177,7 +177,7 @@ var i=function(){function e(t){var n=t.data,r=t.config,o=t.api,i=t.readOnly;!fun
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -189,12 +189,12 @@ var i=function(){function e(t){var n=t.data,r=t.config,o=t.api,i=t.readOnly;!fun
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -205,7 +205,7 @@ var i=function(){function e(t){var n=t.data,r=t.config,o=t.api,i=t.readOnly;!fun
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.

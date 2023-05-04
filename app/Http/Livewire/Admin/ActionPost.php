@@ -98,6 +98,9 @@ class ActionPost extends Component
 
         $this->title = $post->title;
         $this->selected_id = $post->id;
+
+        $this->content = $post->content;
+        $this->emit('update_editor', $this->content);
     }
 
     public function update()
