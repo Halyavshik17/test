@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class ActionPostEdit extends Component
@@ -13,9 +15,12 @@ class ActionPostEdit extends Component
     public $title;
 
     public $content;
+    public $categories;
     public $category_id;
 
     public $validatedData;
+
+    public $selectedTags = [];
 
     protected $rules = [
         'title' => 'required|string',
@@ -23,6 +28,21 @@ class ActionPostEdit extends Component
 
         'category_id' => 'required|integer|exists:categories,id'
     ];
+
+    protected $listeners = [
+        'editorjs-save:editor_edit' => 'saveEditorState',
+        'tagsSelected' => 'saveTagsState'
+    ];
+
+    public function saveEditorState($editorJsonData)
+    {
+        $this->content = json_encode($editorJsonData);
+    }
+
+    public function saveTagsState($tags)
+    {
+        $this->selectedTags = $tags;
+    }
 
     public function route()
     {
@@ -34,18 +54,24 @@ class ActionPostEdit extends Component
     {
         $this->post = Post::where('slug', $slug)->first();
         $this->title = $this->post->title; 
+
+        $this->categories = Category::all();
+        $this->selectedTags = $this->post->tags();
     }
 
-    public function edit($slug)
+    public function update($id)
     {
         $validatedData = $this->validate();
+        $slug = Str::slug(time() . ' ' . $this->title);
 
-        if ($this->selected_id) {
-            $record = Post::findOrFail($this->selected_id);
-            $record->update($validatedData);
-        }
+        $post = Post::find($id);
 
-        $this->resetModal();
+        $post->update($validatedData);
+        $post->update(['slug' => Str::slug(time() . ' ' . $this->title)]);
+
+        $post->tags()->attach($this->selectedTags);
+
+        return redirect()->route('admin.post.edit', $post->slug);
     }
 
     public function render()

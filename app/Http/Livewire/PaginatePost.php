@@ -60,8 +60,12 @@ class PaginatePost extends Component
             // ищем первый параграф <p>
             $post['firstParagraph'] = (new HtmlDocument())->load($this->html)->find('p', 0)->innertext;
 
-            // ищем первое изображение 
-            $post['firstImage'] = (new HtmlDocument())->load($this->html)->find('img', 0)->src;
+            if(isset((new HtmlDocument())->load($this->html)->find('img', 0)->src))
+                $checkImage = (new HtmlDocument())->load($this->html)->find('img', 0)->src;
+            else
+                $checkImage = '/default';
+
+            $post['firstImage'] = $checkImage;
         }
     }
 
