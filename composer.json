@@ -8,6 +8,7 @@
         "php": "^7.3|^8.0",
         "alaminfirdows/laravel-editorjs": "^2.0",
         "austintoddj/canvas": "^6.0",
+        "bastinald/laravel-livewire-routes": "^3.0",
         "durlecode/editorjs-simple-html-parser": "dev-master",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",

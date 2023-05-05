@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use AlAminFirdows\LaravelEditorJs\Facades\LaravelEditorJs;
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Livewire\Component;
 // Сделать модальные окна отдельным компонентом и передавать все $emit
 
@@ -12,7 +13,7 @@ class ActionPost extends Component
 {
     // Прослушиваем событие "editorJs@"
     protected $listeners = [
-        'editorjs-save:myEditor' => 'saveEditorState',
+        'editorjs-save:editor_create' => 'saveEditorState',
         'tagsSelected' => 'saveTagsState'
     ];
 
@@ -30,8 +31,6 @@ class ActionPost extends Component
     public $validatedData;
 
     public $selectedTags;
-
-    public $editorEmit = false;
 
     protected $rules = [
         'title' => 'required|string',
@@ -66,15 +65,9 @@ class ActionPost extends Component
 
     public function save()
     {
-        // dd($this->category_id);
-
         $validatedData = $this->validate();
-
-        // dd($validatedData);
-
         if(isset($validatedData)) {
-            $post = Post::firstOrCreate($validatedData);
-
+            $post = Post::firstOrCreate($validatedData, ['slug' => Str::slug(time() . ' ' . $this->title)]);
             $post->tags()->attach($this->selectedTags);
         }
 
@@ -98,8 +91,6 @@ class ActionPost extends Component
     public function edit(Post $post)
     {
         $this->showingModalEdit = true;
-        $this->emit('showEditor', $post->title); 
-        // dd(2);
 
         $this->title = $post->title;
         $this->selected_id = $post->id;

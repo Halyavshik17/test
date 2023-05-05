@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f81449b1b743048e49ed74542a8c8b48",
+    "content-hash": "4911032b06c29be21315e51b8f96ac4e",
     "packages": [
         {
             "name": "alaminfirdows/laravel-editorjs",
@@ -237,6 +237,56 @@
                 "source": "https://github.com/Bacon/BaconQrCode/tree/2.0.8"
             },
             "time": "2022-12-07T17:46:57+00:00"
+        },
+        {
+            "name": "bastinald/laravel-livewire-routes",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bastinald/laravel-livewire-routes.git",
+                "reference": "06d0a6a14457dc1d268d34bff812308ffa5c608f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bastinald/laravel-livewire-routes/zipball/06d0a6a14457dc1d268d34bff812308ffa5c608f",
+                "reference": "06d0a6a14457dc1d268d34bff812308ffa5c608f",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^8.0",
+                "livewire/livewire": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Bastinald\\LaravelLivewireRoutes\\Providers\\LaravelLivewireRoutesProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bastinald\\LaravelLivewireRoutes\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Dion",
+                    "email": "bastinald@icloud.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Livewire full page component routing.",
+            "homepage": "https://github.com/bastinald/laravel-livewire-routes",
+            "support": {
+                "issues": "https://github.com/bastinald/laravel-livewire-routes/issues",
+                "source": "https://github.com/bastinald/laravel-livewire-routes/tree/3.0.0"
+            },
+            "time": "2021-09-10T00:10:43+00:00"
         },
         {
             "name": "brick/math",

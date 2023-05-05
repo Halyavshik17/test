@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Admin\ActionPostEdit;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +35,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', config('jets
     });
     Route::group(['prefix' => 'posts'], function() {
         Route::get('/', function () { return view('admin.post.show'); })->name('admin.post.show');
-        Route::post('/', function () { return view('admin.post.show'); })->name('admin.post.show');
+        // Route::get('/{slug}', [App\Http\Livewire\Admin\ActionPostEdit::class])->name('admin.post.edit');
         Route::get('/create', function () { return view('admin.post.create'); })->name('admin.post.create');
     });
 });
