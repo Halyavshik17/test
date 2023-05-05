@@ -10,6 +10,10 @@ class ActionTagSelector extends Component
     public $tags = [];
     public $selectedTags = [];
 
+    protected $listeners = [
+        'updatedSelectedTags' => '$refresh'
+    ];
+
     protected $rules = [
         'selectedTags' => 'nullable|array'
     ];
@@ -21,6 +25,8 @@ class ActionTagSelector extends Component
 
     public function updatedSelectedTags($value)
     {
+        // dd($value);
+
         $this->emitUp('tagsSelected', $value);
     }
 

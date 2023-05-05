@@ -1,8 +1,16 @@
-<div class="flex flex-wrap">
+{{-- <div class="flex flex-wrap">
     @foreach ($tags as $tag)
         <label class="inline-flex items-center mt-3 mr-3">
             <input type="checkbox" class="form-checkbox h-5 w-5 text-indigo-600" wire:model="selectedTags" value="{{ $tag->id }}">
             <span class="ml-2 text-gray-700">{{ $tag->title }}</span>
         </label>
     @endforeach
-</div>
+</div> --}}
+
+<select wire:model="selectedTags"
+    multiple>
+    <option disabled>Выберите теги</option>
+    @foreach ($tags as $tag)
+        <option id="{{ $tag->id }}">{{ $tag->title }}</option>
+    @endforeach
+</select>

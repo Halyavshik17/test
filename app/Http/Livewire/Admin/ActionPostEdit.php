@@ -20,13 +20,14 @@ class ActionPostEdit extends Component
 
     public $validatedData;
 
-    public $selectedTags = [];
+    public $selectedTags;
 
     protected $rules = [
         'title' => 'required|string',
         'content' => 'required',
 
-        'category_id' => 'required|integer|exists:categories,id'
+        'category_id' => 'required|integer|exists:categories,id',
+        // 'selectedTags' => 'nullable|array'
     ];
 
     protected $listeners = [
@@ -42,6 +43,7 @@ class ActionPostEdit extends Component
     public function saveTagsState($tags)
     {
         $this->selectedTags = $tags;
+        // dd($this->selectedTags);
     }
 
     public function route()
@@ -56,7 +58,10 @@ class ActionPostEdit extends Component
         $this->title = $this->post->title; 
 
         $this->categories = Category::all();
-        $this->selectedTags = $this->post->tags();
+        $this->selectedTags = $this->post->tags->toArray();
+
+        $this->emit('updatedSelectedTags', $this->selectedTags);
+        // dd($this->post->tags->toArray());
     }
 
     public function update($id)
@@ -69,6 +74,7 @@ class ActionPostEdit extends Component
         $post->update($validatedData);
         $post->update(['slug' => Str::slug(time() . ' ' . $this->title)]);
 
+        // dd($this->selTags);
         $post->tags()->attach($this->selectedTags);
 
         return redirect()->route('admin.post.edit', $post->slug);
