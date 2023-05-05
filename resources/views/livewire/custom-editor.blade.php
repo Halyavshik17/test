@@ -1,4 +1,4 @@
-<div
+<div wire:key="{{ rand() }}"
     x-data="editorInstance('data', '{{ $editorId }}', {{ $readOnly ? 'true' : 'false' }}, '{{ $placeholder }}', '{{ $logLevel }}')"
     x-init="initEditor()"
     class="{{ $class }}"

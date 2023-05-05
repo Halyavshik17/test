@@ -240,6 +240,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.editorInstance = function (dataProperty, editorId, readOnly, placeholder, logLevel) {
+  console.log('Saving failed: ', dataProperty);
   return {
     instance: null,
     data: null,

@@ -72,6 +72,7 @@ class ActionCategory extends Component
         $this->resetExcept();
         $this->resetErrorBag();
     }
+    
 
     public function render()
     {

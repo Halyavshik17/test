@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use AlAminFirdows\LaravelEditorJs\Facades\LaravelEditorJs;
 use App\Models\Post;
 use App\Models\Category;
 use Livewire\Component;
@@ -29,6 +30,8 @@ class ActionPost extends Component
     public $validatedData;
 
     public $selectedTags;
+
+    public $editorEmit = false;
 
     protected $rules = [
         'title' => 'required|string',
@@ -95,6 +98,8 @@ class ActionPost extends Component
     public function edit(Post $post)
     {
         $this->showingModalEdit = true;
+        $this->emit('showEditor', $post->title); 
+        // dd(2);
 
         $this->title = $post->title;
         $this->selected_id = $post->id;
