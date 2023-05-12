@@ -44,13 +44,10 @@ class ActionPost extends Component
     ];
 
     public $showingModalCreate = false;
-    public $showingModalEdit = false;
 
     public function showModalCreate()
     {
         $this->showingModalCreate = true;
-
-        // return view('livewire.admin.action-post-create');
     }
 
     public function saveEditorState($editorJsonData)
@@ -68,7 +65,9 @@ class ActionPost extends Component
         $validatedData = $this->validate();
         if(isset($validatedData)) {
             $post = Post::firstOrCreate($validatedData, ['slug' => Str::slug(time() . ' ' . $this->title)]);
-            $post->tags()->attach($this->selectedTags);
+
+            if(isset($this->selectedTags))
+                $post->tags()->attach($this->selectedTags);
         }
 
         $this->resetModal();
@@ -90,13 +89,10 @@ class ActionPost extends Component
 
     public function edit(Post $post)
     {
-        $this->showingModalEdit = true;
-
         $this->title = $post->title;
         $this->selected_id = $post->id;
 
         $this->content = $post->content;
-        $this->emit('update_editor', $this->content);
     }
 
     public function update()
@@ -117,17 +113,10 @@ class ActionPost extends Component
         $this->resetErrorBag();
     }
 
-    public function mouth()
-    {
-        // $this->categories->id = Category::id();
-    }
-
     public function render()
     {
         $this->posts = Post::all();
         $this->categories = Category::all();
-
-        // dd($this->categories);
 
         return view('livewire.admin.action-post');
     }

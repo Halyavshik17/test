@@ -14,4 +14,9 @@ class Tag extends Model
     protected $table = 'tags';
     // Правило для изменения данных в таблице (избежание ошибки fillable)
     protected $guarded = false;
+
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
+    }
 }

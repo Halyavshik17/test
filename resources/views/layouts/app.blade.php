@@ -37,11 +37,9 @@
 			</div>
 			<div class="themes">
 			<ul>
-				<li><a href="#">Аквариумные рыбки</a></li>
-				<li><a href="#">Растения</a></li>
-				<li><a href="#">Грунт</a></li>
-				<li><a href="#">Декор</a></li>
-				<li><a href="#">Оборудование</a></li>
+                @foreach ($categories as $category)
+                    <li><a href="#">{{ $category }}</a></li>
+                @endforeach
 			</ul>
 			</div>
 		</aside>

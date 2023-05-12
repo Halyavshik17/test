@@ -20,7 +20,7 @@ class ActionPostEdit extends Component
 
     public $validatedData;
 
-    public $selectedTags;
+    public $selectedTags = [];
 
     protected $rules = [
         'title' => 'required|string',
@@ -43,7 +43,6 @@ class ActionPostEdit extends Component
     public function saveTagsState($tags)
     {
         $this->selectedTags = $tags;
-        // dd($this->selectedTags);
     }
 
     public function route()
@@ -54,28 +53,26 @@ class ActionPostEdit extends Component
 
     public function mount($slug)
     {
-        $this->post = Post::where('slug', $slug)->first();
-        $this->title = $this->post->title;
-
-        $this->categories = Category::all();
-        $this->selectedTags = $this->post->tags->toArray();
-
-        // $this->emit('updatedSelectedTags', $this->selectedTags);
-        // dd($this->post->tags->toArray());
+        try {
+            $this->post = Post::where('slug', $slug)->first();
+            $this->title = $this->post->title;
+            $this->categories = Category::all();
+        }
+        catch(\Exception $exception) {
+            return abort(404);
+        }
     }
 
     public function update($id)
     {
-        // dd($id);
         $validatedData = $this->validate();
-        // $slug = Str::slug(time() . ' ' . $this->title);
-
         $post = Post::find($id);
 
         $post->update($validatedData);
         $post->update(['slug' => Str::slug(time() . ' ' . $this->title)]);
 
-        // $post->tags()->attach($this->selectedTags);
+        if(isset($this->selectedTags))
+            $post->tags()->sync($this->selectedTags);
 
         return redirect()->route('admin.post.edit', $post->slug);
     }
