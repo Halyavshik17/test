@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class ActionPostEdit extends Component
 {
-    public $post;    
+    public $post;
 
     public $title;
 
@@ -26,7 +26,7 @@ class ActionPostEdit extends Component
         'title' => 'required|string',
         'content' => 'required',
 
-        'category_id' => 'required|integer|exists:categories,id',
+        // 'category_id' => 'required|integer|exists:categories,id',
         // 'selectedTags' => 'nullable|array'
     ];
 
@@ -55,27 +55,27 @@ class ActionPostEdit extends Component
     public function mount($slug)
     {
         $this->post = Post::where('slug', $slug)->first();
-        $this->title = $this->post->title; 
+        $this->title = $this->post->title;
 
         $this->categories = Category::all();
         $this->selectedTags = $this->post->tags->toArray();
 
-        $this->emit('updatedSelectedTags', $this->selectedTags);
+        // $this->emit('updatedSelectedTags', $this->selectedTags);
         // dd($this->post->tags->toArray());
     }
 
     public function update($id)
     {
+        // dd($id);
         $validatedData = $this->validate();
-        $slug = Str::slug(time() . ' ' . $this->title);
+        // $slug = Str::slug(time() . ' ' . $this->title);
 
         $post = Post::find($id);
 
         $post->update($validatedData);
         $post->update(['slug' => Str::slug(time() . ' ' . $this->title)]);
 
-        // dd($this->selTags);
-        $post->tags()->attach($this->selectedTags);
+        // $post->tags()->attach($this->selectedTags);
 
         return redirect()->route('admin.post.edit', $post->slug);
     }

@@ -13,7 +13,10 @@
                 <img src="{{ $post['firstImage'] }}" alt="Image 1">
                 <h2>{{ $post['title'] }}</h2>
                 <p>{{ $post['firstParagraph'] }}</p>
-                <a class="btn-grid-ref" href="{{ route('show-post', $post['id']) }}">Читать дальше</a>
+                {{-- <a class="btn-grid-ref" href="{{ route('show-post', $post['id']) }}">Читать дальше</a> --}}
+                <div class="frame">
+                    <button class="custom-btn btn-3"><a class="btn-read-more" href="{{ route('show-post', $post['slug']) }}">Читать далее</a></button>
+                </div>
             </div>
             @endforeach
 

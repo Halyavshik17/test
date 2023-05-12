@@ -14,8 +14,9 @@ class PostController extends Controller
         return view('index');
     }
 
-    public function show(Post $post)
+    public function show($slug)
     {
+        $post = Post::where('slug', $slug)->first();
         $html = EditorParser::parse($post->content)->toHtml();
 
         return view('show-post', compact('post', 'html'));

@@ -3,9 +3,7 @@
         <!-- основной контент -->
         <div class="wrapper">
             <h1>{{ $post->title }}</h1>
-
-            {!! $html !!}
-
+                {!! $html !!}
             <a class="ref-to-hp" href="{{ route('index') }}">На главную страницу</a>
         </div>
     </main>

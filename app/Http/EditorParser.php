@@ -28,7 +28,7 @@ class EditorParser
     /**
      * @var string
      */
-    private $prefix = "ce";
+    private $prefix = "page__content";
 
     public function __construct(string $data)
     {
@@ -136,24 +136,32 @@ class EditorParser
 
     private function parseHeader($block)
     {
+        $wrapper = $this->dom->createElement('div');
         $text = new DOMText($block->data->text);
+
+        $wrapper->setAttribute('class', "{$this->prefix}-block");
 
         $header = $this->dom->createElement('h' . $block->data->level);
 
         $header->setAttribute('class', "{$this->prefix}-header");
 
         $header->appendChild($text);
+        $wrapper->appendChild($header);
 
-        $this->dom->appendChild($header);
+        $this->dom->appendChild($wrapper);
     }
 
     private function parseDelimiter()
     {
+        $wrapper = $this->dom->createElement('div');
         $node = $this->dom->createElement('div');
 
+        $wrapper->setAttribute('class', "{$this->prefix}-block");
         $node->setAttribute('class', "{$this->prefix}-delimiter");
 
-        $this->dom->appendChild($node);
+        $wrapper->appendChild($node);
+
+        $this->dom->appendChild($wrapper);
     }
 
     private function parseCode($block)
@@ -179,13 +187,16 @@ class EditorParser
 
     private function parseParagraph($block)
     {
+        $wrapper = $this->dom->createElement('div');
         $node = $this->dom->createElement('p');
 
+        $wrapper->setAttribute('class', "{$this->prefix}-block");
         $node->setAttribute('class', "{$this->prefix}-paragraph");
 
         $node->appendChild($this->html5->loadHTMLFragment($block->data->text));
+        $wrapper->appendChild($node);
 
-        $this->dom->appendChild($node);
+        $this->dom->appendChild($wrapper);
     }
 
     private function parseLink($block)
@@ -352,9 +363,14 @@ class EditorParser
 
     private function parseImage($block)
     {
+        $wrapper = $this->dom->createElement('div');
+        $content = $this->dom->createElement('div');
         $figure = $this->dom->createElement('figure');
 
-        $figure->setAttribute('class', "{$this->prefix}-image");
+        // $figure->setAttribute('class', "{$this->prefix}-image");
+        $figure->setAttribute('class', "block-image");
+        $wrapper->setAttribute('class', "{$this->prefix}-block");
+        $content->setAttribute('class', "block-image__content");
 
         $img = $this->dom->createElement('img');
 
@@ -372,10 +388,14 @@ class EditorParser
         // if(isset($block->data->caption))
             // $figCaption->appendChild($this->html5->loadHTMLFragment($block->data->caption));
 
-        $figure->appendChild($img);
+        $content->appendChild($img);
+
+        $figure->appendChild($content);
 
         $figure->appendChild($figCaption);
 
-        $this->dom->appendChild($figure);
+        $wrapper->appendChild($figure);
+
+        $this->dom->appendChild($wrapper);
     }
 }
