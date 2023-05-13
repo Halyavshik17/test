@@ -36,7 +36,7 @@ class ActionPost extends Component
         'title' => 'required|string',
         'content' => 'required',
 
-        'category_id' => 'required|integer|exists:categories,id'
+        // 'category_id' => 'required|integer|exists:categories,id'
     ];
 
     protected $messages = [

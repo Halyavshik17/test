@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Http\EditorParser;
 use App\Models\Post;
 use Illuminate\Pagination\Cursor;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -27,6 +28,12 @@ class PaginatePost extends Component
 
     public $nextCursor; // holds our current page position.
     public $hasMorePages; // Tells us if we have more pages to paginate.
+
+    public function route()
+    {
+        return Route::get('categories/{slug}')
+            ->name('show.category.posts');
+    }
 
     public function mount()
     {

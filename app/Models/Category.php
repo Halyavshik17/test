@@ -14,4 +14,9 @@ class Category extends Model
     protected $table = 'categories';
     // Правило для изменения данных в таблице (избежание ошибки filable)
     protected $guarded = false;
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'category_id');
+    }
 }

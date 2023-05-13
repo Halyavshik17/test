@@ -29,22 +29,10 @@
 
 	<!--Сайдбары и основной контент-->
   <div class="page-wrapper">
+		<livewire:search-category-post />
 
-		<aside class="left-sidebar">
-			<!-- левый сайдбар -->
-			<div class="background-left">
-			<p>Поиск по темам</p>
-			</div>
-			<div class="themes">
-			<ul>
-                @foreach ($categories as $category)
-                    <li><a href="#">{{ $category }}</a></li>
-                @endforeach
-			</ul>
-			</div>
-		</aside>
         {{ $slot }}
-		<aside class="right-sidebar">
+		{{-- <aside class="right-sidebar">
 			<!-- правый сайдбар -->
 			<div class="background-right">
 			<p>Полезная информация</p>
@@ -59,18 +47,18 @@
 				<li><a href="#">Польза</a></li>
 			</ul>
 		</div>
-		<div class="socail-media">
+		<div class="social-media">
 			<div class="background-right">
 				<p>Социальные сети</p>
 			</div>
-			<div class="socail-media__ref">
-			<ul>
-			<li>Telegram</li>
-			<li>VK</li>
-			</ul>
+			<div class="social-media__ref">
+				<ul>
+					<li>Telegram</li> 
+					<li>VK</li> 
+				</ul>
+			</div>
 		</div>
-		</div>
-		</aside>
+		</aside> --}}
 	</div>
 	<footer>
 	<div class="footer gradient-border">

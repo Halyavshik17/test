@@ -34,9 +34,12 @@ class ActionCategory extends Component
     public function create()
     {
         $validatedData = $this->validate();
-        Category::firstOrCreate($validatedData);
+        // Category::firstOrCreate($validatedData);
 
-        session()->flash('message', 'Уиии мы добавили категорию!');
+        if(isset($validatedData))
+            Category::firstOrCreate($validatedData, ['slug' => $this->title]);
+
+        // session()->flash('message', 'Уиии мы добавили категорию!');
 
         $this->resetModal();
     }
