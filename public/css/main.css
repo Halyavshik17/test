@@ -127,7 +127,7 @@ a:link {
 	color: blue;
 	/*text-decoration: none; — не пишем, так как это свойство прописано в дефолте*/
 }
-a:visited {
+/* a:visited {
 	color: #fff;
 }
 a:hover {
@@ -135,7 +135,7 @@ a:hover {
 }
 a:active {
 	color: #fff;
-}
+} */
 
 .grid-container {
 	display: grid;
