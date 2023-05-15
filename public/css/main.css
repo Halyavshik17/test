@@ -5,22 +5,29 @@
 	list-style: none;
 	text-decoration: none;
 }
+
 :root {
 	--fc-btn-read-more: #fff;
 	--font-color-grid-h: #fff;
-	--font-color-main: #127380;/*Для изменения цвета в хэдэре и основном*/
+	--font-color-main: #127380;
+	/*Для изменения цвета в хэдэре и основном*/
 	--back-color-btn: #20BDFF;
-	--f-c-sidebar: #000; /*Цвет шрифта для ссылок сайдбаров*/
+	--f-c-sidebar: #000;
+	/*Цвет шрифта для ссылок сайдбаров*/
 
-	--font-color-footer: #fff;/*В основном для изменения цвета футера*/
-	--f-c-footer-a: #fff;/*Цвет шрифта для ссылок в футере.*/
+	--font-color-footer: #fff;
+	/*В основном для изменения цвета футера*/
+	--f-c-footer-a: #fff;
+	/*Цвет шрифта для ссылок в футере.*/
 
 }
+
 body {
 	max-width: 100%;
 	font-family: 'Montserrat', sans-serif;
 
 }
+
 .site-header__wrapper {
 	height: 120px;
 	background: linear-gradient(180deg, #72D6EC 43.43%, #72ECD6 87.88%);
@@ -28,12 +35,14 @@ body {
 	align-items: center;
 	justify-content: space-between;
 }
+
 .anti-logo {
 	color: var(--font-color-footer);
 	text-align: center;
 	line-height: 25px;
 	margin-left: 110px;
 }
+
 /*Здесь нужно добавить декоративный элемент для заполнения пространства, чтобы не было пустоты!*/
 
 
@@ -47,6 +56,7 @@ body {
 	background: #EDF8FF;
 	color: var(--font-color-main);
 }
+
 .btn-reg {
 	display: none;
 	width: 150px;
@@ -59,25 +69,80 @@ body {
 	color: var(--font-color-main);
 }
 
-
-.page-wrapper {
-  display: flex;
-	margin: 50px 10px;
-	gap: 1rem; /*Через это свойство можно добавить расстояние между flex-элементами. Кстати, flex-wrap не обязательно писать.*/
+.logo {
+	width: 100px;
+	height: auto;
+	margin-top: 15px;
+	margin-left: 100px;
 }
+
+/*Основной контент*/
+.page-wrapper {
+	display: flex;
+	margin: 50px 10px;
+	gap: 1rem;
+	/*Через это свойство можно добавить расстояние между flex-элементами. Кстати, flex-wrap не обязательно писать.*/
+}
+
 /*Поменял основной контент и сайдбары для удобства.*/
 .content {
-  flex: 3;
+	flex: 3;
 	/*border: solid blue 2px; /*Бордер, чтобы было видно границы основного контента.*/
 	padding: 0 20px;
 	height: auto;
 }
+
+.main-content {}
+
+.blog-content {
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.wrapper {
+	padding: 20px 10px;
+}
+
+/*Стилизация кнопки*/
+.ref-to-hp {
+	float: right;
+	width: 250px;
+	height: 40px;
+	padding: 10px 10px;
+	margin-bottom: 15px;
+	text-align: center;
+	background: var(--back-color-btn);
+	border-radius: 5px;
+	text-decoration: none;
+	color: #fff;
+	font-weight: 600;
+	opacity: 90%;
+}
+.ref-to-hp:hover {
+	background: #73D6EC;
+	background: linear-gradient(45deg, #72ECD6 0%, #73D6EC 74%);
+}
+
+/*Порядок: непосещенная, посещенная, наведение, активная. Если изменить один селекторов для коррекции специфичности, это приведет к сбою и неожиданным результатам.*/
+a:link {
+	color: blue;
+	/*text-decoration: none; — не пишем, так как это свойство прописано в дефолте*/
+}
+a:visited {
+	color: #fff;
+}
+a:hover {
+	color: #fff;
+}
+a:active {
+	color: #fff;
+}
+
 .grid-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, auto);
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, auto);
 	justify-content: center;
-  gap: 3rem;
+	gap: 3rem;
 	margin-top: 40px;
 }
 
@@ -85,32 +150,38 @@ body {
 	width: 400px;
 	height: 450px;
 	/*overflow: hidden;*/
-  background-color: #fff;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	background-color: #fff;
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .grid-item img {
 	width: 100%;
-  height: 200px;
+	height: 200px;
 }
 
 .main-top-text {
 	text-align: start;
 }
-.main-top-text, h2 {
-  font-size: 24px;
-  margin-top: 10px;
-  margin-bottom: 5px;
+
+.main-top-text,
+h2 {
+	font-size: 24px;
+	margin-top: 10px;
+	margin-bottom: 5px;
 }
-.main-top-text, p {
-  font-size: 17px;
-  margin-top: 0;
+
+.main-top-text,
+p {
+	font-size: 17px;
+	margin-top: 0;
 }
+
 .btn-grid-ref {
 	background: var(--back-color-btn);
 	border-radius: 5px;
 }
+
 /*Стилизация параграфов*/
 p {
 	font-size: 17px;
@@ -119,108 +190,125 @@ p {
 
 /*Кнопка «Читать далее»*/
 .frame {
-  width: 90%;
-  margin: 0px auto;
-  text-align: center;
+	width: 90%;
+	margin: 0px auto;
+	text-align: center;
 
 }
+
 button {
-  margin: 20px;
+	margin: 20px;
 }
+
 .custom-btn {
-  width: 130px;
-  height: 40px;
-  color: #fff;
-  border-radius: 5px;
-  padding: 10px 25px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-  7px 7px 20px 0px rgba(0,0,0,.1),
-  4px 4px 5px 0px rgba(0,0,0,.1);
-  outline: none;
+	width: 130px;
+	height: 40px;
+	color: #fff;
+	border-radius: 5px;
+	padding: 10px 25px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	background: transparent;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	display: inline-block;
+	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
+		7px 7px 20px 0px rgba(0, 0, 0, .1),
+		4px 4px 5px 0px rgba(0, 0, 0, .1);
+	outline: none;
 }
 
 .btn-3 {
-  background: rgb(0,172,238);
-	background: linear-gradient(0deg, rgba(0,172,238,1) 0%, rgba(2,126,251,1) 100%);
-  width: 130px;
-  height: 40px;
-  line-height: 42px;
-  padding: 0;
-  border: none;
+	background: rgb(0, 172, 238);
+	background: linear-gradient(0deg, rgba(0, 172, 238, 1) 0%, rgba(2, 126, 251, 1) 100%);
+	width: 130px;
+	height: 40px;
+	line-height: 42px;
+	padding: 0;
+	border: none;
 }
+
 .btn-3 a {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
 }
+
 .btn-3:before,
 .btn-3:after {
-  position: absolute;
-  content: "";
-  right: 0;
-  top: 0;
-  background:rgba(2,126,251,1);
-  transition: all 0.3s ease;
+	position: absolute;
+	content: "";
+	right: 0;
+	top: 0;
+	background: rgba(2, 126, 251, 1);
+	transition: all 0.3s ease;
 }
+
 .btn-3:before {
-  height: 0%;
-  width: 2px;
+	height: 0%;
+	width: 2px;
 }
+
 .btn-3:after {
-  width: 0%;
-  height: 2px;
+	width: 0%;
+	height: 2px;
 }
-.btn-3:hover{
+
+.btn-3:hover {
 	background: transparent;
-  box-shadow: none;
+	box-shadow: none;
 }
+
 .btn-3:hover:before {
-  height: 100%;
+	height: 100%;
 }
+
 .btn-3:hover:after {
-  width: 100%;
+	width: 100%;
 }
-.btn-3 a:hover{
-  color: rgba(2,126,251,1);
+
+.btn-3 a:hover {
+	color: rgba(2, 126, 251, 1);
 }
+
 .btn-3 a:before,
 .btn-3 a:after {
-  position: absolute;
-  content: "";
-  left: 0;
-  bottom: 0;
-  background: rgba(2,126,251,1);
-  transition: all 0.3s ease;
+	position: absolute;
+	content: "";
+	left: 0;
+	bottom: 0;
+	background: rgba(2, 126, 251, 1);
+	transition: all 0.3s ease;
 }
+
 .btn-3 a:before {
-  width: 2px;
-  height: 0%;
+	width: 2px;
+	height: 0%;
 }
+
 .btn-3 a:after {
-  width: 0%;
-  height: 2px;
+	width: 0%;
+	height: 2px;
 }
+
 .btn-3 a:hover:before {
-  height: 100%;
+	height: 100%;
 }
+
 .btn-3 a:hover:after {
-  width: 100%;
+	width: 100%;
 }
+
 .btn-read-more {
 	color: var(--fc-btn-read-more);
 }
 
 .left-sidebar {
-  flex: 1;
-	height: 90vh; /*Остальные элементы wrapper приняли номинально такую же высоту. Но я задал им свои парметры.*/
+	flex: 1;
+	height: 90vh;
+	/*Остальные элементы wrapper приняли номинально такую же высоту. Но я задал им свои парметры.*/
 	border: solid #73D6EC 2px;
 	color: var(--font-color-main);
 	/*Добавить липкость*/
@@ -228,6 +316,7 @@ button {
 	position: sticky;
 	top: 0;
 }
+
 .background-left {
 	width: 100%;
 	height: 40px;
@@ -236,12 +325,14 @@ button {
 	text-align: center;
 	padding-top: 10px;
 }
+
 .themes {
 	margin-top: 1em;
 	text-align: left;
 	line-height: 3em;
 
 }
+
 .themes a {
 	font-size: 1em;
 	color: var(--f-c-sidebar);
@@ -252,12 +343,13 @@ button {
 	background-repeat: no-repeat;
 	transition: background-size 400ms;
 }
+
 .themes a:hover {
 	background-size: 0 1px, 100% 1px;
 }
 
 .right-sidebar {
-  flex: 1;
+	flex: 1;
 	border: solid #73D6EC 2px;
 	color: var(--font-color-main);
 	height: 90vh;
@@ -267,6 +359,7 @@ button {
 	top: 0;
 	overflow: hidden;
 }
+
 .background-right {
 	width: 100%;
 	height: 40px;
@@ -275,12 +368,14 @@ button {
 	text-align: center;
 	padding-top: 10px;
 }
+
 .helper {
 	margin-top: 1em;
 	text-align: center;
 	line-height: 3em;
 
 }
+
 .helper a {
 	font-size: 1em;
 	color: var(--f-c-sidebar);
@@ -292,122 +387,132 @@ button {
 	background-repeat: no-repeat;
 	transition: background-size 400ms;
 }
+
 .helper a:hover {
 	background-size: 0 1px, 100% 1px;
 }
+
 .social-media {
 	text-align: center;
 
 }
+
 .social-media__ref {
 	margin-top: 20px;
 	line-height: 40px;
 }
 
 .footer {
-  display: flex;
-  flex-direction: row;
+	display: flex;
+	flex-direction: row;
 	align-items: center;
 	justify-content: space-around;
 	height: 120px;
-	background:/*linear-gradient(to right,#1fa2ff,#12d8fa,#a6ffcb);*/#72D6EC;
+	background:
+		/*linear-gradient(to right,#1fa2ff,#12d8fa,#a6ffcb);*/
+		#72D6EC;
 	filter: brightness(0.95);
 	margin-top: 50px;
 	color: var(--font-color-footer);
 }
+
 .footer__a {
 	color: var(--f-c-footer-a);
 }
+
 .gradient-border {
-  border-top: 3px solid transparent;
-  border-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet) 1;
+	border-top: 3px solid transparent;
+	border-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet) 1;
 }
 
 
 
 /*Стилизация скроллбара. Сделать бы его фиксированной высоты.*/
 ::-webkit-scrollbar {
-  width: 10px;
+	width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
-  background-color: #f9f9fd;
+	-webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+	background-color: #f9f9fd;
 	opacity: 0.5;
-  border-radius: 10px;
+	border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: linear-gradient(180deg, #00c6fb, #005bea);
+	border-radius: 10px;
+	background: linear-gradient(180deg, #00c6fb, #005bea);
 	opacity: 0.5;
 }
 
 /** EDITOR CONTENT **/
 .page__content-block {
-    padding: 10px 0;
+	padding: 10px 0;
 }
 
 .block-image img {
-    display: block;
-    margin: 0 auto
+	display: block;
+	margin: 0 auto
 }
 
-.block-image__content img,.block-image__content video {
-    max-width: 100%;
-    vertical-align: bottom
+.block-image__content img,
+.block-image__content video {
+	max-width: 100%;
+	vertical-align: bottom
 }
 
-.block-image__content--bordered img,.block-image__content--bordered video {
-    border: 3px solid #e8e8eb;
-    border: 3px solid var(--color-line-gray);
-    box-sizing: border-box
+.block-image__content--bordered img,
+.block-image__content--bordered video {
+	border: 3px solid #e8e8eb;
+	border: 3px solid var(--color-line-gray);
+	box-sizing: border-box
 }
 
 .block-image__content--with-background {
-    background: #f8f7fa;
-    background: var(--color-bg-light);
-    padding: 15px
+	background: #f8f7fa;
+	background: var(--color-bg-light);
+	padding: 15px
 }
 
-.block-image__content--with-background img,.block-image__content--with-background video {
-    margin: 0 auto;
-    max-width: 60%
+.block-image__content--with-background img,
+.block-image__content--with-background video {
+	margin: 0 auto;
+	max-width: 60%
 }
 
 .block-image__caption {
-    color: #717682;
-    color: var(--color-text-second);
-    font-size: .9em;
-    margin-top: 10px
+	color: #717682;
+	color: var(--color-text-second);
+	font-size: .9em;
+	margin-top: 10px
 }
 
 .page__content-delimiter {
-    line-height: 1.6em;
-    text-align: center;
-    width: 100%
+	line-height: 1.6em;
+	text-align: center;
+	width: 100%
 }
 
 .page__content-delimiter:before {
-    content: "***";
-    display: inline-block;
-    font-size: 30px;
-    height: 30px;
-    letter-spacing: .2em;
-    line-height: 65px
+	content: "***";
+	display: inline-block;
+	font-size: 30px;
+	height: 30px;
+	letter-spacing: .2em;
+	line-height: 65px
 }
 
 .page__content-code {
-    min-height: 200px;
-    font-family: Menlo, Monaco, Consolas, Courier New, monospace;
-    color: #41314e;
-    line-height: 1.6em;
-    font-size: 12px;
-    background: #f8f7fa;
-    border: 1px solid #f1f1f4;
-    box-shadow: none;
-    white-space: pre;
-    word-wrap: normal;
-    overflow-x: auto;
-    resize: vertical;
+	min-height: 200px;
+	font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+	color: #41314e;
+	line-height: 1.6em;
+	font-size: 12px;
+	background: #f8f7fa;
+	border: 1px solid #f1f1f4;
+	box-shadow: none;
+	white-space: pre;
+	word-wrap: normal;
+	overflow-x: auto;
+	resize: vertical;
 }

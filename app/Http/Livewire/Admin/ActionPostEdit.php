@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -26,7 +27,7 @@ class ActionPostEdit extends Component
         'title' => 'required|string',
         'content' => 'required',
 
-        // 'category_id' => 'required|integer|exists:categories,id',
+        'category_id' => 'required|exists:categories,id',
         // 'selectedTags' => 'nullable|array'
     ];
 
@@ -56,16 +57,26 @@ class ActionPostEdit extends Component
         try {
             $this->post = Post::where('slug', $slug)->first();
             $this->title = $this->post->title;
+            $this->category_id = $this->post->category_id;
+
+            $post_tags = $this->post->tags->pluck('id')->toArray();
+            if(is_array($post_tags))
+                $this->selectedTags = $post_tags;
+
             $this->categories = Category::all();
         }
         catch(\Exception $exception) {
             return abort(404);
         }
+        Log::debug($this->selectedTags);
+
+        // dd(Post::where('category_id', 12)->get());
     }
 
     public function update($id)
     {
         $validatedData = $this->validate();
+        // dd($validatedData);
         $post = Post::find($id);
 
         $post->update($validatedData);

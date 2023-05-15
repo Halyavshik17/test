@@ -8,7 +8,8 @@
         <nav aria-label="Related Topics" class="sidebar-inner">
             <ul>
                 @foreach ($categories as $category)
-                    <li><a href="{{ route('livewire.show-category-posts', $category->slug) }}">{{ $category->title }}</a></li>
+                    <li><a href="{{ route('show.category.posts', $category->slug) }}">{{ $category->title }}</a></li>
+                    {{-- <li><a href="">{{ $category->title }}</a></li> --}}
                 @endforeach
             </ul>
         </nav>

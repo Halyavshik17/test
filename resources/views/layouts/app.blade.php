@@ -18,7 +18,7 @@
 	<header>
 		<div class="wrapper site-header__wrapper">
 			<!--Вместо изображения с логотипом в формате svg пока что заголовок.-->
-			<h1 class="anti-logo">flash<br>AQUA</h1>
+			<a href="{{ route('index') }}"><img class="logo" src="{{ asset('storage/logo.svg') }}"></a>
 
 			{{-- <button class="btn-in">Вход</button> --}}
 			{{-- <button class="btn-reg">Регистрация</button> --}}
@@ -32,19 +32,19 @@
 		<livewire:search-category-post />
 
         {{ $slot }}
-		{{-- <aside class="right-sidebar">
+		<aside class="right-sidebar">
 			<!-- правый сайдбар -->
 			<div class="background-right">
-			<p>Полезная информация</p>
+			<p>Популярные статьи</p>
 		</div>
 		<div class="helper">
 			<ul>
-				<li><a href="#">Польза</a></li>
-				<li><a href="#">Польза</a></li>
-				<li><a href="#">Польза</a></li>
-				<li><a href="#">Польза</a></li>
-				<li><a href="#">Польза</a></li>
-				<li><a href="#">Польза</a></li>
+				<li><a href="#">Круглый аквариум — ваза</a></li>
+				<li><a href="#">Живые растения</a></li>
+				<li><a href="#">Большой объем</a></li>
+				<li><a href="#">Культура аквариумистики</a></li>
+				<li><a href="#">Биотопный аквариум</a></li>
+				<li><a href="#"></a></li>
 			</ul>
 		</div>
 		<div class="social-media">
@@ -52,13 +52,13 @@
 				<p>Социальные сети</p>
 			</div>
 			<div class="social-media__ref">
-				<ul>
-					<li>Telegram</li> 
-					<li>VK</li> 
-				</ul>
-			</div>
+			<ul>
+			<li>Telegram</li> 
+			<li>VK</li> 
+			</ul>
 		</div>
-		</aside> --}}
+		</div>
+		</aside>
 	</div>
 	<footer>
 	<div class="footer gradient-border">

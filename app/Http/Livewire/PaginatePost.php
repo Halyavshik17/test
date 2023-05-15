@@ -29,11 +29,11 @@ class PaginatePost extends Component
     public $nextCursor; // holds our current page position.
     public $hasMorePages; // Tells us if we have more pages to paginate.
 
-    public function route()
-    {
-        return Route::get('categories/{slug}')
-            ->name('show.category.posts');
-    }
+    // public function route()
+    // {
+    //     return Route::get('categories/{slug}')
+    //         ->name('show.category.posts');
+    // }
 
     public function mount()
     {
@@ -55,6 +55,9 @@ class PaginatePost extends Component
             'cursor',
             Cursor::fromEncoded($this->nextCursor)
         );
+
+        // dd($posts);
+
         $this->posts->push(...$posts->items());
         $this->hasMorePages = $posts->hasMorePages();
         if ($this->hasMorePages === true) {
@@ -70,7 +73,7 @@ class PaginatePost extends Component
             if(isset((new HtmlDocument())->load($this->html)->find('img', 0)->src))
                 $checkImage = (new HtmlDocument())->load($this->html)->find('img', 0)->src;
             else
-                $checkImage = '/default';
+                $checkImage = asset('storage/default.jpg');
 
             $post['firstImage'] = $checkImage;
         }
