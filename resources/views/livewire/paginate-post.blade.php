@@ -20,11 +20,14 @@
                                 href="{{ route('show-post', $post['slug']) }}">Читать далее</a></button>
                     </div>
 
-                    <h6>Тема: {{ optional($post->category)->title }}</h6>
-                    <h6>Теги: 
-                        @foreach ($post->tags as $tag)
-                            {{ optional($tag)->title }}
+                    {{-- <h6>Тема: {{ optional($post->category)->title }}</h6> --}}
+                    <h6>Тема: {{{ $postCategory }}}</h6>
+                    <h6>Теги:
+                        @if($hasTags)
+                        @foreach ($postTags as $postTag)
+                            {{ optional($postTag)->title }}
                         @endforeach
+                        @endif
                     </h6>
                 </div>
             @endforeach
@@ -33,7 +36,7 @@
                 <button wire:click.prevent="loadPosts">Load post</button>
             @endif
 
-            @if ($hasMorePages)
+            {{-- @if ($hasMorePages)
                 <div x-data="{
                     init() {
                         let observer = new IntersectionObserver((entries) => {
@@ -50,7 +53,7 @@
                     }
                 }" class="grid grid-cols-1 gap-8 mt-4 md:grid-cols-1 lg:grid-cols-1">
                 </div>
-            @endif
+            @endif --}}
         </div>
     </div>
 </main>

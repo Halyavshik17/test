@@ -31,6 +31,14 @@ class ActionPostEdit extends Component
         // 'selectedTags' => 'nullable|array'
     ];
 
+    protected $messages = [
+        'title.required' => 'ERROR',
+        'title.string' => 'ERROR',
+
+        'content.required' => 'ERROR',
+        'category_id' => 'ERROR'
+    ];
+
     protected $listeners = [
         'editorjs-save:editor_edit' => 'saveEditorState',
         'tagsSelected' => 'saveTagsState'
@@ -75,8 +83,9 @@ class ActionPostEdit extends Component
 
     public function update($id)
     {
+        // dd($this->category_id);
+
         $validatedData = $this->validate();
-        // dd($validatedData);
         $post = Post::find($id);
 
         $post->update($validatedData);

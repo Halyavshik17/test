@@ -2,13 +2,15 @@
     {{-- <x-slot name="content"> --}}
     <div class="mt-2">
         {{-- <label class="block text-sm font-medium text-gray-700">Категория</label> --}}
-        <select wire:model.defer="category_id" name="category_id"
+        <select wire:model="category_id"
             class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            <option disabled>Выберите категорию</option>
+            <option>Выберите категорию</option>
             @foreach ($categories as $category)
-                <option id="category_id" value="{{ $category->id }}">{{ $category->title }}</option>
+                <option value="{{ $category->id }}">{{ $category->title }}</option>
             @endforeach
         </select>
+
+        @error('category_id') <span class="error">{{ $message }}</span> @enderror
     </div>
 
     <livewire:admin.action-tag-selector wire:model="selectedTags" :slug="$post->slug" />
@@ -31,6 +33,8 @@
             ])
         </div>
     </div>
+    @error('title') <span class="error">{{ $message }}</span> @enderror
+    @error('content') <span class="error">{{ $message }}</span> @enderror
     {{-- </x-slot> --}}
     {{-- <x-slot name="footer"> --}}
     <x-jet-button wire:click="update({{ $post->id }})" wire:loading.attr="disabled">

@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Pagination\Cursor;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -29,6 +30,10 @@ class PaginatePost extends Component
     public $nextCursor; // holds our current page position.
     public $hasMorePages; // Tells us if we have more pages to paginate.
 
+    public $postCategory;
+    public $postTags = [];
+
+    public $hasTags = false;
     // public function route()
     // {
     //     return Route::get('categories/{slug}')
@@ -50,7 +55,7 @@ class PaginatePost extends Component
         }
 
         $posts = Post::cursorPaginate(
-            6,
+            2,
             ['*'],
             'cursor',
             Cursor::fromEncoded($this->nextCursor)
@@ -58,13 +63,17 @@ class PaginatePost extends Component
 
         // dd($posts);
 
-        $this->posts->push(...$posts->items());
+        
+        $this->posts->push($posts->items());
+        // Log::debug($this->posts);
         $this->hasMorePages = $posts->hasMorePages();
         if ($this->hasMorePages === true) {
             $this->nextCursor = $posts->nextCursor()->encode();
         }
 
         foreach($this->posts as $post) {
+            Log::debug($post);
+
             $this->html = EditorParser::parse($post['content'])->toHtml();
 
             // ищем первый параграф <p>
@@ -76,6 +85,10 @@ class PaginatePost extends Component
                 $checkImage = asset('storage/default.jpg');
 
             $post['firstImage'] = $checkImage;
+            
+            $this->postCategory = isset($post->category['title']) ? $post->category['title'] : 'none';
+            $this->postTags = isset($post->tags) ? $post->tags : $this->hasTags = true;
+            // dd($post->category['title']);
         }
     }
 

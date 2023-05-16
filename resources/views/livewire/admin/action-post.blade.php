@@ -16,7 +16,7 @@
                     {{-- <label class="block text-sm font-medium text-gray-700">Категория</label> --}}
                     <select wire:model.defer="category_id" name="category_id"
                         class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                        <option disabled>Выберите категорию</option>
+                        <option>Выберите категорию</option>
                         @foreach ($categories as $category)
                             <option id="category_id" value="{{ $category->id }}">{{ $category->title }}</option>
                         @endforeach
