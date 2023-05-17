@@ -1,17 +1,23 @@
-<div class="grid grid-cols-2 gap-x-4 gap-y-8 mt-8 lg:gap-y-16 lg:mt-16">
-    @foreach ($posts as $post)
-        <div>
-            <img
-                class="bg-gray-100 w-full"
-                src="https://picsum.photos/id/{{ ($post->id * 3) % 100 }}/800/600"
-                width="800"
-                height="600"
-                alt=""
-            >
-
-            <div class="mt-4">
-                {{ $post->title }}
-            </div>
+<div class="grid-container">
+@foreach ($posts as $post)
+    <div class="grid-item">
+        <h6>Время: {{ $post->created_at }}</h6>
+        <img src="{{ $firstImage }}" alt="">
+        <h2>{{ $post->title }}</h2>
+        <p>{{ $firstParagraph }}</p>
+        {{-- <a class="btn-grid-ref" href="{{ route('show-post', $post['id']) }}">Читать дальше</a> --}}
+        <div class="frame">
+            <button class="custom-btn btn-3"><a class="btn-read-more"
+                    href="{{ route('show-post', $post->slug) }}">Читать далее</a></button>
         </div>
-    @endforeach
+
+        {{-- <h6>Тема: {{ optional($post->category)->title }}</h6> --}}
+        <h6>Тема: {{{ $post->category->title }}}</h6>
+        <h6>Теги:
+            @foreach ($post->tags as $tag)
+                {{ optional($tag)->title }}
+            @endforeach
+        </h6>
+    </div>
+@endforeach
 </div>
