@@ -1,23 +1,29 @@
 <div>
+    <div class="writing__content">
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 bg-white writing__scrollable">
         {{-- <div data-ignore-scroll-lock="" class="writing__scrollable"> --}}
         {{-- meta_description --}}
         <div class="mb-4">
             <input type="text"
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                name="description" id="description" placeholder="description">
+                wire:model="custom_slug" placeholder="{{ $custom_slug }}">
+        </div>
+        <div class="mb-4">
+            <input type="text"
+                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                wire:model="meta_description" placeholder="description">
         </div>
         {{-- meta_keywords --}}
         <div class="mb-4">
             <input type="text"
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                name="description" id="description" placeholder="keywords">
+                wire:model="meta_keywords" placeholder="keywords">
         </div>
         {{-- meta_title --}}
         <div class="mb-4">
             <input type="text"
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                name="description" id="description" placeholder="<title>">
+                wire:model="meta_title" placeholder="<title>">
         </div>
 
         <div class="mt-2">
@@ -38,7 +44,7 @@
         <livewire:admin.action-tag-selector wire:model="selectedTags" :slug="$post->slug" />
 
         <div class="col-span-6 sm:col-span-4 mt-4 bg-white">
-            <input wire:model.defer="title" rows="1" placeholder="Заголовок" default="default" maxlength="120"
+            <input wire:model="title" rows="1" placeholder="Заголовок" default="default" maxlength="120"
                 class="editor_header" style="height: 47px; overflow-y: hidden;" data-processed="true"
                 autocomplete="title">
 
@@ -60,7 +66,9 @@
             <span class="error">{{ $message }}</span>
         @enderror
     </div>
-    <div class="max-w-7xl mx-auto py-4 sm:px-6 lg:px-8 bg-white sticky bottom-0" style="z-index: 1;">
+    </div>
+    <div class="writing__footer">
+    <div class="max-w-7xl mx-auto py-4 sm:px-6 lg:px-8 bg-white">
         <x-jet-button wire:click="update({{ $post->id }})" wire:loading.attr="disabled">
             {{ __('Сохранить') }}
         </x-jet-button>
@@ -70,6 +78,7 @@
             href="{{ route('admin.post.show') }}">
             {{ __('Назад') }}
         </a>
+    </div>
     </div>
 </div>
 
@@ -85,6 +94,16 @@
         scrollbar-width: thin;
 
         height: 100vh;
+    }
+
+    .writing__content {
+        height: 1000px
+    }
+    .writing__footer {
+        position: sticky;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
     }
 </style>
 

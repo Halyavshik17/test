@@ -11,11 +11,7 @@ use Livewire\Component;
 
 class ActionPostEdit extends Component
 {
-    public $post;
-
-    public $title;
-
-    public $content;
+    public $post, $title, $content, $slug, $custom_slug, $meta_title, $meta_description, $meta_keywords;
     public $categories;
     public $category_id;
 
@@ -28,6 +24,7 @@ class ActionPostEdit extends Component
         'content' => 'required',
 
         'category_id' => 'required|exists:categories,id',
+        'slug' => 'string|unique:posts'
         // 'selectedTags' => 'nullable|array'
     ];
 
@@ -65,6 +62,7 @@ class ActionPostEdit extends Component
         try {
             $this->post = Post::where('slug', $slug)->first();
             $this->title = $this->post->title;
+            $this->custom_slug = $this->post->slug;
             $this->category_id = $this->post->category_id;
 
             $post_tags = $this->post->tags->pluck('id')->toArray();
@@ -81,15 +79,31 @@ class ActionPostEdit extends Component
         // dd(Post::where('category_id', 12)->get());
     }
 
+    public function updatingCustomSlug($str)
+    {
+        $this->custom_slug = Str::slug(time() . ' ' . $str);
+    }
+
     public function update($id)
     {
         // dd($this->category_id);
 
+        $this->slug = Str::slug(time() . ' ' . $this->title);
+
         $validatedData = $this->validate();
         $post = Post::find($id);
 
+        // dd($this->slug);
+
+        switch(strcmp($this->slug, $this->custom_slug)) {
+            case -1: $this->slug = $this->custom_slug;;
+            // case 1: $this->slug;
+            // case 0: $this->slug;
+        }
+
         $post->update($validatedData);
-        $post->update(['slug' => Str::slug(time() . ' ' . $this->title)]);
+
+        // $post->update(['slug' => Str::slug(time() . ' ' . $this->title)]);
 
         if(isset($this->selectedTags))
             $post->tags()->sync($this->selectedTags);
