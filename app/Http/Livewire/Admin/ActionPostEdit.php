@@ -62,6 +62,7 @@ class ActionPostEdit extends Component
         try {
             $this->post = Post::where('slug', $slug)->first();
             $this->title = $this->post->title;
+            $this->slug = $this->post->slug;
             $this->custom_slug = $this->post->slug;
             $this->category_id = $this->post->category_id;
 
@@ -79,31 +80,27 @@ class ActionPostEdit extends Component
         // dd(Post::where('category_id', 12)->get());
     }
 
-    public function updatingCustomSlug($str)
+    public function updatingTitle($str)
     {
-        $this->custom_slug = Str::slug(time() . ' ' . $str);
+        $this->custom_slug = Str::slug($this->post->id . ' ' . $str);
     }
 
     public function update($id)
     {
-        // dd($this->category_id);
+        $this->slug = Str::slug($this->post->id . ' ' . $this->title);
 
-        $this->slug = Str::slug(time() . ' ' . $this->title);
+        $expected  = crypt($this->slug, '$2a$07$usesomesillystringforsalt$');
+        $correct   = crypt($this->custom_slug, '$2a$07$usesomesillystringforsalt$');
+
+        $isEquals = hash_equals($expected, $correct);
+        if(!$isEquals) {
+            $this->slug = $this->custom_slug;
+        }
 
         $validatedData = $this->validate();
         $post = Post::find($id);
 
-        // dd($this->slug);
-
-        switch(strcmp($this->slug, $this->custom_slug)) {
-            case -1: $this->slug = $this->custom_slug;;
-            // case 1: $this->slug;
-            // case 0: $this->slug;
-        }
-
         $post->update($validatedData);
-
-        // $post->update(['slug' => Str::slug(time() . ' ' . $this->title)]);
 
         if(isset($this->selectedTags))
             $post->tags()->sync($this->selectedTags);

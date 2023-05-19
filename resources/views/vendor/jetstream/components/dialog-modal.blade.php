@@ -6,7 +6,7 @@
             {{ $title }}
         </div>
 
-        <div class="mt-4">
+        <div class="mt-4" style="overflow: scroll; height: 100vh;">
             {{ $content }}
         </div>
     </div>

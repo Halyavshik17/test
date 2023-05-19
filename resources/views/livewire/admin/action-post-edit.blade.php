@@ -1,5 +1,5 @@
-<div>
-    <div class="writing__content">
+<div class="writing__content">
+    <div class="writing__body">
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 bg-white writing__scrollable">
         {{-- <div data-ignore-scroll-lock="" class="writing__scrollable"> --}}
         {{-- meta_description --}}
@@ -36,7 +36,7 @@
                 @endforeach
             </select>
 
-            @error('category_id')
+            @error('slug')
                 <span class="error">{{ $message }}</span>
             @enderror
         </div>

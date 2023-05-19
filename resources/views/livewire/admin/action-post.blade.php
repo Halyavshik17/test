@@ -1,59 +1,59 @@
 <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
 
     {{-- <x-jet-button type="button" wire:click="showModalCreate" wire:loading.attr="disabled"> --}}
-        <x-jet-button type="button" wire:click="showModalCreate" wire:loading.attr="disabled">
-            {{ __('Добавить пост') }}
-        </x-jet-button>
+    <x-jet-button type="button" wire:click="showModalCreate" wire:loading.attr="disabled">
+        {{ __('Добавить пост') }}
+    </x-jet-button>
 
-        {{-- Show modal create  --}}
-        <x-jet-dialog-modal wire:model="showingModalCreate" maxWidth="4xl">
-            <x-slot name="title">
-                {{-- Добавление поста --}}
-            </x-slot>
+    {{-- Show modal create  --}}
+    <x-jet-dialog-modal wire:model="showingModalCreate" maxWidth="4xl">
+        <x-slot name="title">
+            Добавление поста
+        </x-slot>
 
-            <x-slot name="content">
-                <div class="mt-2">
-                    {{-- <label class="block text-sm font-medium text-gray-700">Категория</label> --}}
-                    <select wire:model.defer="category_id" name="category_id"
-                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                        <option>Выберите категорию</option>
-                        @foreach ($categories as $category)
-                            <option id="category_id" value="{{ $category->id }}">{{ $category->title }}</option>
-                        @endforeach
-                    </select>
-                </div>
+        <x-slot name="content">
+            <div class="mt-2">
+                {{-- <label class="block text-sm font-medium text-gray-700">Категория</label> --}}
+                <select wire:model.defer="category_id" name="category_id"
+                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    <option>Выберите категорию</option>
+                    @foreach ($categories as $category)
+                        <option id="category_id" value="{{ $category->id }}">{{ $category->title }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-                <livewire:admin.action-tag-selector wire:model="selectedTags" :slug="[]" />
+            <livewire:admin.action-tag-selector wire:model="selectedTags" :slug="[]" />
 
-                <div class="col-span-6 sm:col-span-4 mt-4">
-                    <input wire:model.defer="title" rows="1" placeholder="Заголовок" default="default" maxlength="120"
-                    class="editor_header"
-                    style="height: 47px; overflow-y: hidden;" data-processed="true" autocomplete="title"></input>
+            <div class="col-span-6 sm:col-span-4 mt-4">
+                <input wire:model.defer="title" rows="1" placeholder="Заголовок" default="default"
+                    maxlength="120" class="editor_header" style="height: 47px; overflow-y: hidden;"
+                    data-processed="true" autocomplete="title"></input>
 
-                    @livewire('custom-editor', [
-                        'editorId' => 'editor_create',
-                        'value' => $content,
-                        'uploadDisk' => 'public',
-                        'downloadDisk' => 'public',
-                        'class' => '...',
-                        'style' => '...',
-                        'readOnly' => false,
-                        'placeholder' => 'Нажмите TAB для выбора инструмента',
-                ] )
-                </div>
-            </x-slot>
-            <x-slot name="footer">
-                <x-jet-button wire:click="save" wire:target="save" wire:loading.attr="disabled">
+                @livewire('custom-editor', [
+                    'editorId' => 'editor_create',
+                    'value' => $content,
+                    'uploadDisk' => 'public',
+                    'downloadDisk' => 'public',
+                    'class' => '...',
+                    'style' => '...',
+                    'readOnly' => false,
+                    'placeholder' => 'Нажмите TAB для выбора инструмента',
+                ])
+            </div>
+        </x-slot>
+        <x-slot name="footer">
+            <x-jet-button wire:click="save" wire:target="save" wire:loading.attr="disabled">
                 {{-- <x-jet-button wire:click="create" wire:loading.attr="disabled"> --}}
-                    {{ __('Сохранить') }}
-                </x-jet-button>
+                {{ __('Сохранить') }}
+            </x-jet-button>
 
-                <x-jet-secondary-button class="ml-2" wire:click="resetModal" wire:loading.attr="disabled">
-                    {{ __('Отмена') }}
-                </x-jet-secondary-button>
-                </span>
-            </x-slot>
-        </x-jet-dialog-modal>
+            <x-jet-secondary-button class="ml-2" wire:click="resetModal" wire:loading.attr="disabled">
+                {{ __('Отмена') }}
+            </x-jet-secondary-button>
+            </span>
+        </x-slot>
+    </x-jet-dialog-modal>
 
     <div class="overflow-x-auto">
         <div class="mt-2 w-full">
@@ -115,3 +115,26 @@
         </div>
     </div>
 </div>
+
+<script>
+    // document.body.style.overflow = "hidden";
+
+    const showDialog = () => {
+        document.getElementById('dialog').classList.add('show')
+        const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
+        const body = document.body;
+        body.style.position = 'fixed';
+        body.style.top = `-${scrollY}`;
+    };
+    const closeDialog = () => {
+        const body = document.body;
+        const scrollY = body.style.top;
+        body.style.position = '';
+        body.style.top = '';
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        document.getElementById('dialog').classList.remove('show');
+    }
+    window.addEventListener('scroll', () => {
+        document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`);
+    });
+</script>
